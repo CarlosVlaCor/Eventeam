@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}
+    Salones de eventos
+{% endblock title%}
+{% block content %}
+{% include 'includes/header.html' %}
+
+<div class="container">
+    
+    <div class="row">
+        <div class="col-sm-4">
+
+            <h2>Salon de evento Carloko's</h2>
+            <div class="container mb-3">
+              <div class="row">
+                <div class="col">
+                  
+                <div class="col">
+                  <small>Para eventos :</small>
+                  <span class="badge rounded-pill bg-primary"><a href="#" class="link-light">Bodas</a></span>
+                  <span class="badge rounded-pill bg-primary"><a href="#" class="link-light">Bautizos</a></span>
+                  <span class="badge rounded-pill bg-primary"><a href="#" class="link-light">XV años</a></span>
+                </div>
+                </div>
+              </div>
+
+          </div>
+            <div class="card shadow">
+                <div class="card-body">
+                  <div class="card shadow my-4">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><h6 class="card-subtitle p-2 text-primary "><i class="fa-solid fa-location-dot me-2"></i>Lugar</h6></li>
+                      <li class="list-group-item"><h6 class="card-subtitle p-2 text-primary"><i class="fa-solid fa-wallet me-2"></i></i>Precio</h6></li>
+                      <li class="list-group-item"><h6 class="card-subtitle p-2 text-primary"><i class="fa-solid fa-users me-2"></i>Capacidad</h6></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="container mt-3">
+                <div class="row">
+                    <button class="btn btn-primary">Reservar</button>
+                </div>
+              </div>
+        </div>
+        <div class="col-sm-8">
+<div id="carouselExampleControls" class="carousel slide shadow" data-bs-ride="carousel">
+    <div class="carousel-inner rounded">
+      <div class="carousel-item active" style="height: 70vh;">
+        <img src="https://i.pinimg.com/originals/39/a7/a0/39a7a092fd760ac037cca51e495d6248.jpg" style="height: 100%; object-fit: cover;" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item" style="height: 70vh;">
+        <img src="https://www.eventosg6.com/images/salondeeventos.jpg" style="height: 100%; object-fit: cover;" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item"  style="height: 70vh;">
+        <img src="https://i.pinimg.com/originals/39/a7/a0/39a7a092fd760ac037cca51e495d6248.jpg" style="height: 100%; object-fit: cover;" class="d-block w-100"  alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+<div class="card shadow mt-2 text-center" >
+    <div class="card-body">
+      <h5 class="card-title">Descripción general</h5>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum magnam ad eius pariatur! Molestias tempore mollitia quidem, doloremque sed culpa porro hic sunt dolor autem blanditiis officiis eveniet inventore id?
+
+    </div>
+  </div>
+
+</div>
+</div>
+    {% include 'includes/footer.html' %}
+{% endblock content %}
