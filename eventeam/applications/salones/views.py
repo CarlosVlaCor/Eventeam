@@ -41,7 +41,8 @@ class RegistrarSalon(FormView):
 class UpdateSalon(UpdateView):
     template_name = 'salones/actualizar-salon.html'
     model = Salon
-    fields = '__all__'
+    form_class = SalonForm
+    success_url = reverse_lazy('salones_app:update-salon')
 
     def get_context_data(self, **kwargs):
         context = super(UpdateSalon, self).get_context_data(**kwargs)
