@@ -15,5 +15,13 @@ urlpatterns = [
         'salon-evento/',
         views.SalonView.as_view(),
         name='salon-evento'),
+    path(
+        'registrar-salon/',
+        views.RegistrarSalon.as_view(),
+        name='registrar-salon'),
+    path(
+        'update-salon/<pk>/',
+        views.UpdateSalon.as_view(),
+        name='update-salon'),
 
 ]
