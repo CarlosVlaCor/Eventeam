@@ -19,11 +19,23 @@ class SalonView(TemplateView):
     template_name = 'salones/salon-evento.html'
 
 
-class RegistrarSalon(CreateView):
+class RegistrarSalon(FormView):
     template_name = 'salones/registrar-salon.html'
     model = Salon
     form_class = SalonForm
     success_url = reverse_lazy('salones_app:registrar-salon')
+
+    def form_valid(self, form):
+
+        tags = form.cleaned_data.pop('tags')
+        espacios = form.cleaned_data.pop('espacios')
+        salon = Salon.objects.create(
+            **form.cleaned_data,
+            user=self.request.user
+        )
+        salon.tags.set(tags)
+        salon.espacios.set(espacios)
+        return super(RegistrarSalon, self).form_valid(form)
 
 
 class UpdateSalon(UpdateView):
@@ -38,6 +50,7 @@ class UpdateSalon(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('salones_app:update-salon', kwargs={'pk': self.get_object().id})
+
 
 class UploadImage(View):
 
@@ -62,7 +75,8 @@ class MisSalonesView(ListView):
     fields = '__all__'
     context_object_name = 'salones'
 
-    def get(self, request, *args, **kwargs):
-        self.object_list = Salon.objects.filter(user=request.user)
-        return super(MisSalonesView, self).get(request, *args, **kwargs)
-
+    def get_queryset(self):
+        queryset = Salon.objects.filter(
+            user=self.request.user
+        )
+        return queryset

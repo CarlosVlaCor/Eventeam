@@ -4,57 +4,9 @@ Salones de eventos
 {% endblock title%}
 {% block content %}
 {% include 'includes/header.html' %}
-<div class="container p-5">
-    <div class="card p-5">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <form method="POST">{% csrf_token %}
-            <div class="row">
-                <div class="col-sm-6">
-                    {{form.nombre}}
-                </div>
-                <div class="col-sm-6">
-                    {{form.ciudad}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    {{form.region}}
-                </div>
-                <div class="col-sm-6">
-                    {{form.direccion}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    {{form.alquiler}}
-                </div>
-                <div class="col-sm-6">
-                    {{form.rango}}
-                </div>
-            </div>
-            <div class="row">
-                {{form.tags}}
-            </div>
-                <div class="row">
-                {{form.espacios}}
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <h2>Servicios</h2>
-                    {{ children.as_p }}
-                </div>
-                <div class="col-sm-6">
-                    <h2>Espacios</h2>
-                    {{ children2.as_p }}
-                </div>
-
-            </div>
-            <input type="submit" value="Save">
-                </form>
-        </div>
-    </div>
-</div>
-
+<form method="POST">{% csrf_token %}
+{{form.as_p}}
+    <button>Acceder</button>
+</form>
 {% include 'includes/footer.html' %}
 {% endblock content %}

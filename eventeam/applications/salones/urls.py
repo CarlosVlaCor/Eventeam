@@ -27,5 +27,9 @@ urlpatterns = [
         'upload-image/<pk>/',
         views.UploadImage.as_view(),
         name='upload-image'),
+    path(
+        'propietarios/mis-salones/',
+        views.MisSalonesView.as_view(),
+        name='mis-salones'),
 
 ]

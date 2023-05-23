@@ -3,12 +3,9 @@ from .models import Salon, Tags, SalonImages
 
 
 class SalonForm(forms.ModelForm):
-    tags = forms.ModelMultipleChoiceField(
-        queryset=Tags.objects.all(),
-    )
 
     class Meta:
-        fields = '__all__'
+        exclude = ['user']
         model = Salon
         widgets = {
             'nombre': forms.TextInput(
