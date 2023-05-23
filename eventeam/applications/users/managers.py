@@ -19,10 +19,10 @@ class UserManager(BaseUserManager, models.Manager):
         return user
 
     def create_user(self, email, password=None, **extra_fields):
-        return self._create_user(email, password, False, False, False, 1, **extra_fields)
+        return self._create_user(email, password, False, False, True, 1, **extra_fields)
 
     def create_superuser(self, email, password=None, **extra_fields):
         return self._create_user(email, password, True, True, True, 0, **extra_fields)
 
-    def create_client(self, email, password=None, **extra_fields):
-        return self._create_user(email, password, False, False, False, 2, **extra_fields)
+    def create_propietario(self, email, password=None, **extra_fields):
+        return self._create_user(email, password, False, False, True, 2, **extra_fields)

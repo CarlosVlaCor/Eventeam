@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}
+    Salones de eventos
+{% endblock title%}
+{% block content %}
+{% include 'includes/header.html' %}
+<form method="POST"> {% csrf_token %}
+{{ form.as_p}}
+    <button type="submit"> asdsa </button>
+</form>
+    {% include 'includes/footer.html' %}
+{% endblock content %}

@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views import View
-from django.views.generic import TemplateView, FormView, CreateView, UpdateView
+from django.views.generic import TemplateView, FormView, CreateView, UpdateView, ListView
 
 from .forms import SalonForm, ImageForm
 
@@ -54,4 +54,15 @@ class UploadImage(View):
                 'salones_app:update-salon', kwargs={'pk': id_salon},
             )
         )
+
+
+class MisSalonesView(ListView):
+    template_name = 'salones/mis-salones.html'
+    model = Salon
+    fields = '__all__'
+    context_object_name = 'salones'
+
+    def get(self, request, *args, **kwargs):
+        self.object_list = Salon.objects.filter(user=request.user)
+        return super(MisSalonesView, self).get(request, *args, **kwargs)
 

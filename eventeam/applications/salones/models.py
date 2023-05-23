@@ -1,5 +1,7 @@
 from django.db import models
 
+from ..users.models import User
+
 
 class Tags(models.Model):
     nombre = models.CharField(verbose_name='Nombre del tag', max_length=100)
@@ -40,7 +42,7 @@ class Salon(models.Model):
     rango = models.IntegerField(verbose_name='Rango', choices=Rango.choices)
     tags = models.ManyToManyField(Tags)
     espacios = models.ManyToManyField(Espacio)
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     class Meta:
         verbose_name = 'Salon'
         verbose_name_plural = 'Salones'

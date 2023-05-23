@@ -19,5 +19,9 @@ urlpatterns = [
         'logout/',
         views.LogoutView.as_view(),
         name='user-logout'),
+    path(
+        'registrar-propietario/',
+        views.PropietarioRegister.as_view(),
+        name='registrar-propietario'),
 
 ]

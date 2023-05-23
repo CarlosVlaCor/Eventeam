@@ -56,5 +56,21 @@ class LogoutView(View):
         )
 
 
+class PropietarioRegister(FormView):
+    template_name = 'users/registrar-propietario.html'
+    form_class = UserRegisterForm
+    success_url = reverse_lazy('users_app:user-login')
 
+    def form_valid(self, form):
+        User.objects.create_propietario(
+            form.cleaned_data['email'],
+            form.cleaned_data['password1'],
+            first_name=form.cleaned_data['first_name'],
+            last_name=form.cleaned_data['last_name'],
+            region=form.cleaned_data['region'],
+            city=form.cleaned_data['city'],
+            phone=form.cleaned_data['phone']
+        )
+
+        return super(PropietarioRegister, self).form_valid(form)
 

@@ -13,10 +13,16 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'salones_app:lista-eventos'%}">Salones de eventos</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Contacta</a></li>
                         {% if not user.is_anonymous %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'users_app:user-logout' %}">Mis salones</a></li>
+                            {% if user.type == 2%}
                             <li class="nav-item"><a class="nav-link" href="{% url 'users_app:user-logout' %}">Cerrar sesión</a></li>
-                            {% else %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'users_app:user-login' %}">Iniciar sesión</a></li>
+                            {% else%}
                             {% endif %}
+
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'users_app:user-login' %}">Iniciar sesión</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'users_app:registrar-propietario' %}">¿Eres propietario de salones?</a></li>
+                        {% endif %}
 
                     </ul>
                 </div>
