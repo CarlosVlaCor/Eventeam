@@ -1,3 +1,4 @@
+from captcha.fields import ReCaptchaField
 from django import forms
 from django.contrib.auth import authenticate
 from .models import User
@@ -13,6 +14,7 @@ class UserRegisterForm(forms.ModelForm):
             }
         )
     )
+    captcha = ReCaptchaField()
 
     class Meta:
         model = User
