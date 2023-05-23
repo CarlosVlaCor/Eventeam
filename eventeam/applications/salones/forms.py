@@ -1,5 +1,5 @@
 from django import forms
-from .models import Salon, Tags
+from .models import Salon, Tags, SalonImages
 
 
 class SalonForm(forms.ModelForm):
@@ -55,3 +55,10 @@ class SalonForm(forms.ModelForm):
             )
 
         }
+
+
+class ImageForm(forms.ModelForm):
+
+    class Meta:
+        model = SalonImages
+        fields = ['image']

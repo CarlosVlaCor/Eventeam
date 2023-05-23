@@ -23,5 +23,9 @@ urlpatterns = [
         'update-salon/<pk>/',
         views.UpdateSalon.as_view(),
         name='update-salon'),
+    path(
+        'upload-image/<pk>/',
+        views.UploadImage.as_view(),
+        name='upload-image'),
 
 ]

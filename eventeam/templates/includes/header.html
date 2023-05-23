@@ -8,7 +8,12 @@
             <ul class="navbar-nav ms-auto my-2 my-lg-0">
                 <li class="nav-item"><a class="nav-link" href="{% url 'salones_app:lista-eventos' %}">Salones de eventos</a></li>
                 <li class="nav-item"><a class="nav-link" href="#portfolio">Contacta</a></li>
-                <li class="nav-item"><a class="nav-link" href="login">Iniciar sesión</a></li>
+                {% if not user.is_anonymous %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'users_app:user-logout' %}">Cerrar sesión</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'users_app:user-login' %}">Iniciar sesión</a></li>
+                {% endif %}
+
             </ul>
         </div>
     </div>

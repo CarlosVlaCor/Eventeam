@@ -4,95 +4,9 @@
 {% endblock title%}
 {% block content %}
 {% include 'includes/header.html' %}
-    <section class="text-center mt-5">
-        <div class="container py-5">
-        <div class="card mx-4 mx-md-5 shadow-5-strong text-white" style="
-                border-radius: 1rem;
-              background: linear-gradient(to bottom, rgba(255, 87, 9, 0.8) 0%, rgb(241, 82, 8) 100%);
-              backdrop-filter: blur(60px);
-              ">
-          <div class="card-body py-5 px-md-5">
-      
-            <div class="row d-flex justify-content-center">
-              <div class="col-lg-10">
-                <h2 class="fw-bold mb-5">Registrar usuario</h2>
-                <form class="needs-validation" th:action="@{/user/register}" method="POST" th:object="${user}">
-                  <div class="row">
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                        <label class="form-label " for="form3Example1">Nombre</label>
-                        <input type="text" id="form3Example1" class="form-control" required/>
-                        <div class="invalid-feedback">Se requiere el nombre</div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                        <label class="form-label" for="form3Example2">Apellido</label>
-                        <input type="text" id="form3Example2" class="form-control" required/>
-                        <div class="invalid-feedback">Se requiere el nombre</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                        <label class="form-label" for="form3Example1">Ciudad</label>
-                        <input type="text" id="form3Example1" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                        <label class="form-label" for="form3Example2">Dirección</label>
-                        <input type="text" id="form3Example2" class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <div class="form-outline">
-                                <label class="form-label" for="form3Example1">Celular</label>
-                                <input type="text" id="form3Example1" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <div class="form-outline">
-                                <label class="form-label" for="form3Example2">Email</label>
-                                <input type="text" id="form3Example2" class="form-control" />
-                            </div>
-                        </div>
-                    </div>
-                  <div class="row">
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                        <label class="form-label text-white" for="form3Example4">Sexo*</label>
-                        <select class="form-select" aria-label="Default select example" required>
-                          <option value="3">Prefiero no especificar</option>
-                          <option value="1">Masculino</option>
-                          <option value="2">Femenino</option>
-                        </select>
-                        <div class="invalid-feedback">Se requiere el sexo</div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                        
-                        <label class="form-label" for="form3Example4">Password</label>
-                        <input type="password" id="form3Example4" class="form-control" required/>
-                        <div class="invalid-feedback">Se requiere el correo electrónico</div>
-                      </div>
-                    </div>
-                  </div>
-      
-                  <button class="btn btn-outline-light btn-lg px-5" type="submit">Registrarse</button>
-      
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
+<form method="POST"> {% csrf_token %}
+{{ form.as_p}}
+    <button type="submit"> asdsa </button>
+</form>
     {% include 'includes/footer.html' %}
 {% endblock content %}
