@@ -53,11 +53,11 @@ class Salon(models.Model):
 
 class SalonImages(models.Model):
     image = models.ImageField(blank=False, null=False, upload_to='salones/')
-    salon = models.ForeignKey(Salon, on_delete=models.CASCADE)
+    salon = models.ForeignKey(Salon, on_delete=models.CASCADE, related_name='imagenes')
 
     class Meta:
         verbose_name = 'Imagen del salon'
         verbose_name_plural = 'Imagenes del salon'
 
     def __str__(self):
-        return 'imagen del salon %s' % self.salon.name
+        return 'imagen del salon %s' % self.salon.nombre
