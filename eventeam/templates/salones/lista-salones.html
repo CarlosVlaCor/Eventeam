@@ -1,182 +1,96 @@
 {% extends 'base.html' %}
 {% block title %}
-    Salones de eventos
+Salones de eventos
 {% endblock title%}
 {% block content %}
 {% include 'includes/header.html' %}
-        <!-- Navigation-->
+<!-- Navigation-->
 
-    <div class="container"><h1>Encuentra los mejores lugares para eventos</h1></div>
-    <div class="container mt-5 ">
-        <div class="row g-1">
-            <div class="col-auto">
+<div class="container"><h1>Encuentra los mejores lugares para eventos</h1></div>
+<div class="container mt-5 ">
+    <div class="row g-1">
+        <div class="col-auto">
             <select class="form-select form-select-m mb-3" aria-label=".form-select-lg example">
                 <option selected>Open this select menu</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
-              </select>
+            </select>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Lugar">
+        </div>
+        <div class="col-auto">
+            <button class="btn bg-primary">Buscar</button>
+        </div>
+    </div>
+</div>
+<div class="container mt-1">
+
+    {% for e in lista %}
+    <div class="card mb-3 border-start-0 border-end-0 border-top-0 py-3">
+        <div class="row g-0">
+            <div class="col-md-3">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" style="height: 200px;">
+                            <img src="https://i.pinimg.com/originals/39/a7/a0/39a7a092fd760ac037cca51e495d6248.jpg"
+                                 style="height: 100%; object-fit: cover;" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item" style="height: 200px;">
+                            <img src="https://www.eventosg6.com/images/salondeeventos.jpg" class="d-block w-100"
+                                 style="height: 100%; object-fit: cover;" alt="...">
+                        </div>
+                        <div class="carousel-item" style="height: 200px;">
+                            <img src="https://i.pinimg.com/originals/39/a7/a0/39a7a092fd760ac037cca51e495d6248.jpg"
+                                 class="d-block w-100" style="height: 100%; object-fit: cover;" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button"
+                            data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button"
+                            data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
-            <div class="col-auto">
-                <input type="text" class="form-control" placeholder="Lugar">
-            </div>
-            <div class="col-auto">
-                <button class="btn bg-primary">Buscar</button>
+
+
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{e.nombre}}</h5>
+                    <p class="card-text"><small class="text-muted"><i class="fa-solid fa-users"></i> {{e.get_rango_display}} personas</small></p>
+                    <p class="card-text">{{e.description}}</p>
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <p class="card-text"><small class="text-muted"><i
+                                    class="fa-solid fa-location-dot"></i> {{e.ciudad}}, {{e.region}}</small></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <a href="{% url 'salones_app:salon-evento' e.id %}">Mas informacion -></a>
+                        </div>
+
+                    </div>
+
+
+                </div>
             </div>
         </div>
     </div>
-    <div class="container mt-1">
-        <div class="card mb-3 border-start-0 border-end-0 border-top-0 py-3" >
-            <div class="row g-0">
-              <div class="col-md-3">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner" >
-                      <div class="carousel-item active" style="height: 200px;">
-                        <img src="https://i.pinimg.com/originals/39/a7/a0/39a7a092fd760ac037cca51e495d6248.jpg" style="height: 100%; object-fit: cover;"  class="d-block w-100" alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 200px;">
-                        <img src="https://www.eventosg6.com/images/salondeeventos.jpg" class="d-block w-100" style="height: 100%; object-fit: cover;"  alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 200px;">
-                        <img src="https://i.pinimg.com/originals/39/a7/a0/39a7a092fd760ac037cca51e495d6248.jpg" class="d-block w-100" style="height: 100%; object-fit: cover;" alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Salon de evento 3</h5>
-                    <p class="card-text"><small class="text-muted"><i class="fa-solid fa-users"></i> De 500 a 1000 personas</small></p>
-                    <p class="card-text">Para celebrar su boda en un lugar que les ofrezca amplitud, un excelente ambiente, y servicios de primeradsasadsadsadsad...</p>
-                    <div class="row">
-                        <div class="col-lg-9">
-                            <p class="card-text"><small class="text-muted"><i class="fa-solid fa-location-dot"></i> Los Mochis, Sinaloa</small></p>
-                        </div>
-                        <div class="col-lg-3">
-                            <a href="#">Mas informacion -></a>
-                        </div>
-                        
-                    </div>
-                    
-                      
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card mb-3 border-start-0 border-end-0 border-top-0 py-3" >
-            <div class="row g-0">
-              <div class="col-md-3">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner" >
-                      <div class="carousel-item active" style="height: 200px;">
-                        <img src="https://i.pinimg.com/originals/39/a7/a0/39a7a092fd760ac037cca51e495d6248.jpg" style="height: 100%; object-fit: cover;"  class="d-block w-100" alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 200px;">
-                        <img src="https://www.eventosg6.com/images/salondeeventos.jpg" class="d-block w-100" style="height: 100%; object-fit: cover;"  alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 200px;">
-                        <img src="https://i.pinimg.com/originals/39/a7/a0/39a7a092fd760ac037cca51e495d6248.jpg" class="d-block w-100" style="height: 100%; object-fit: cover;" alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Salon de evento 3</h5>
-                    <p class="card-text"><small class="text-muted"><i class="fa-solid fa-users"></i> De 500 a 1000 personas</small></p>
-                    <p class="card-text">Para celebrar su boda en un lugar que les ofrezca amplitud, un excelente ambiente, y servicios de primeradsasadsadsadsad...</p>
-                    <div class="row">
-                        <div class="col-lg-9">
-                            <p class="card-text"><small class="text-muted"><i class="fa-solid fa-location-dot"></i> Los Mochis, Sinaloa</small></p>
-                        </div>
-                        <div class="col-lg-3">
-                            <a href="#">Mas informacion -></a>
-                        </div>
-                        
-                    </div>
-                    
-                      
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card mb-3 border-start-0 border-end-0 border-top-0 py-3" >
-            <div class="row g-0">
-              <div class="col-md-3">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner" >
-                      <div class="carousel-item active" style="height: 200px;">
-                        <img src="https://i.pinimg.com/originals/39/a7/a0/39a7a092fd760ac037cca51e495d6248.jpg" style="height: 100%; object-fit: cover;"  class="d-block w-100" alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 200px;">
-                        <img src="https://www.eventosg6.com/images/salondeeventos.jpg" class="d-block w-100" style="height: 100%; object-fit: cover;"  alt="...">
-                      </div>
-                      <div class="carousel-item" style="height: 200px;">
-                        <img src="https://i.pinimg.com/originals/39/a7/a0/39a7a092fd760ac037cca51e495d6248.jpg" class="d-block w-100" style="height: 100%; object-fit: cover;" alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Salon de evento 3</h5>
-                    <p class="card-text"><small class="text-muted"><i class="fa-solid fa-users"></i> De 500 a 1000 personas</small></p>
-                    <p class="card-text">Para celebrar su boda en un lugar que les ofrezca amplitud, un excelente ambiente, y servicios de primeradsasadsadsadsad...</p>
-                    <div class="row">
-                        <div class="col-lg-9">
-                            <p class="card-text"><small class="text-muted"><i class="fa-solid fa-location-dot"></i> Los Mochis, Sinaloa</small></p>
-                        </div>
-                        <div class="col-lg-3">
-                            <a href="#">Mas informacion -></a>
-                        </div>
-                        
-                    </div>
-                    
-                      
-                </div>
-              </div>
-            </div>
-          </div>
-    </div>
+    {% endfor %}
+</div>
 
-    {% include 'includes/footer.html' %}
+{% include 'includes/footer.html' %}
 {% endblock content %}

@@ -12,7 +12,7 @@ urlpatterns = [
         views.ListaSalonesView.as_view(),
         name='lista-eventos'),
     path(
-        'salon-evento/',
+        'salon-evento/<pk>/',
         views.SalonView.as_view(),
         name='salon-evento'),
     path(

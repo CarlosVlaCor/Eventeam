@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views import View
-from django.views.generic import TemplateView, FormView, CreateView, UpdateView, ListView, DeleteView
+from django.views.generic import TemplateView, FormView, CreateView, UpdateView, ListView, DeleteView, DetailView
 
 from .forms import SalonForm, ImageForm
 
@@ -11,12 +11,16 @@ from django.forms.models import inlineformset_factory
 from .models import Salon, SalonImages
 
 
-class ListaSalonesView(TemplateView):
+class ListaSalonesView(ListView):
     template_name = 'salones/lista-salones.html'
+    model = Salon
+    paginate_by = 10
+    context_object_name = 'lista'
 
 
-class SalonView(TemplateView):
+class SalonView(DetailView):
     template_name = 'salones/salon-evento.html'
+    model = Salon
 
 
 class RegistrarSalon(FormView):
