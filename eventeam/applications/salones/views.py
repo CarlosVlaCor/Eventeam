@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views import View
-from django.views.generic import TemplateView, FormView, CreateView, UpdateView, ListView
+from django.views.generic import TemplateView, FormView, CreateView, UpdateView, ListView, DeleteView
 
 from .forms import SalonForm, ImageForm
 
@@ -26,7 +26,6 @@ class RegistrarSalon(FormView):
     success_url = reverse_lazy('salones_app:registrar-salon')
 
     def form_valid(self, form):
-
         tags = form.cleaned_data.pop('tags')
         espacios = form.cleaned_data.pop('espacios')
         salon = Salon.objects.create(
@@ -81,3 +80,8 @@ class MisSalonesView(ListView):
             user=self.request.user
         )
         return queryset
+
+
+class DeleteSalon(DeleteView):
+    model = Salon
+    success_url = reverse_lazy('salones_app:mis-salones')

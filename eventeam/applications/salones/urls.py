@@ -31,5 +31,9 @@ urlpatterns = [
         'propietarios/mis-salones/',
         views.MisSalonesView.as_view(),
         name='mis-salones'),
+    path(
+        'propietarios/mis-salones/<pk>',
+        views.DeleteSalon.as_view(),
+        name='delete-salon'),
 
 ]
