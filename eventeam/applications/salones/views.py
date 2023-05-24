@@ -67,7 +67,9 @@ class ReservarSalonView(View):
             ctx = {
                 'nombre': request.user.first_name + ' ' + request.user.last_name,
                 'telefono': request.user.phone,
-                'email': request.user.email
+                'email': request.user.email,
+                'fecha': fecha,
+                'inv_aprox': inv_aprox
             }
             message = get_template('salones/notificacion-reserva.html').render(ctx)
             msg = EmailMessage(
