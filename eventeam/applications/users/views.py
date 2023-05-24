@@ -1,6 +1,6 @@
 from django.contrib.auth import logout, authenticate, login
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import TemplateView, FormView
@@ -20,6 +20,11 @@ class UserRegisterView(FormView):
     form_class = UserRegisterForm
     success_url = reverse_lazy('users_app:user-login')
 
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('/')
+        return super().dispatch(request, *args, **kwargs)
+
     def form_valid(self, form):
         #
         User.objects.create_user(
@@ -34,10 +39,16 @@ class UserRegisterView(FormView):
         # enviar el codigo al email del user
         return super(UserRegisterView, self).form_valid(form)
 
+
 class LoginUser(FormView):
     template_name = 'users/login.html'
     form_class = LoginForm
     success_url = reverse_lazy('home_app:inicio')
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('/')
+        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         user = authenticate(
@@ -61,6 +72,11 @@ class PropietarioRegister(FormView):
     template_name = 'users/registrar-propietario.html'
     form_class = UserRegisterForm
     success_url = reverse_lazy('users_app:user-login')
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('/')
+        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         User.objects.create_propietario(

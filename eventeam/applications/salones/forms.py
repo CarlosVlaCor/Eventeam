@@ -1,61 +1,47 @@
 from django import forms
-from .models import Salon, Tags, SalonImages
+from .models import Salon, Tags, SalonImages, ReservaSalon
 
 
 class SalonForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['placeholder'] = visible.field.label
     class Meta:
         exclude = ['user']
         model = Salon
         widgets = {
-            'nombre': forms.TextInput(
+            'description': forms.Textarea(attrs={'rows': 3}),
+        }
+
+
+class ImageForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['placeholder'] = visible.field.label
+
+    class Meta:
+        model = SalonImages
+        fields = ['image']
+
+
+class ReservarForm(forms.ModelForm):
+    fecha = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}))
+
+    class Meta:
+        model = ReservaSalon
+        fields = ['fecha', 'inv_aprox']
+        widgets = {
+            'inv_aprox': forms.Select(
                 attrs={
-                    'class': 'form-control',
-                    'placeholder': 'Nombre'
-                }
-            ),
-            'ciudad': forms.TextInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': 'Ciudad'
-                }
-            ),
-            'region': forms.TextInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': 'Region'
-                }
-            ),
-            'direccion': forms.TextInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': 'Direccion'
-                }
-            ),
-            'alquiler': forms.TextInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': 'Alquiler'
-                }
-            ),
-            'region': forms.TextInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': 'Region'
-                }
-            ),
-            'rango': forms.Select(
-                attrs={
-                    'class': 'form-select form-select-m mb-3',
-                    'placeholder': 'Rango'
+                    'class': 'form-select'
                 }
             )
 
         }
 
-
-class ImageForm(forms.ModelForm):
-
-    class Meta:
-        model = SalonImages
-        fields = ['image']

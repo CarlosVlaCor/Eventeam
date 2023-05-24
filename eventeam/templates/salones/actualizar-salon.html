@@ -1,20 +1,110 @@
 {% extends 'base.html' %}
 {% block title %}
-    Salones de eventos
+Salones de eventos
 {% endblock title%}
 {% block content %}
 {% include 'includes/header.html' %}
-    <form method="POST">{% csrf_token %}
-    {{ form.as_p }}
-        <button type="submit">sddasasd</button>
-        </form>
-    <form method="POST" action="{% url 'salones_app:upload-image' object.id  %}" enctype="multipart/form-data">{% csrf_token %}
-      {{form_image.image}}
-        <button type="submit">AAAAAA</button>
-    </form>
-    <form method="POST" action="{% url 'salones_app:delete-salon' object.id  %}">{% csrf_token %}
-        <button type="submit">Borrar</button>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div id="carouselExampleControls" class="carousel slide shadow" data-bs-ride="carousel">
+                <div class="carousel-inner rounded">
+                    {% for i in object.imagenes.all %}
+                    <div class="carousel-item active" style="height: 70vh;">
+                        <img src="{{i.image.url}}" style="height: 100%; object-fit: cover;" class="d-block w-100"
+                             alt="...">
+                        <div class="carousel-caption d-none d-md-block  mt-5">
+                            <form method="POST" action="{% url 'salones_app:delete-image' object.id i.id %}"> {% csrf_token %}
+                                <button type="submit" class="btn btn-primary ">Eliminar imagen</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h3>Subir imágen del salón de eventos</h3>
+            <form method="POST" action="{% url 'salones_app:upload-image' object.id  %}" enctype="multipart/form-data">{% csrf_token %}
 
+                {{form_image.image}}
+                <button type="submit" class="btn btn-primary mt-3">Subir imagen</button>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<form method="POST">{% csrf_token %}
+    <div class="container p-5">
+        <div class="card">
+            <div class="card-body p-5">
+                <h5 class="card-title">Card title</h5>
+                <div class="card-body">
+                    <div class="row "> {% csrf_token %}
+                        <div class="col-sm-4">
+                            <label for="inputEmail4" class="form-label">Nombre</label>
+                            {{form.nombre}}
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="inputPassword4" class="form-label">Ciudad</label>
+                            {{form.ciudad}}
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputAddress" class="form-label">Region o estado</label>
+                            {{form.region}}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputAddress2" class="form-label">Region o Estado</label>
+                            {{form.direccion}}
+                        </div>
+                        <div class="col-md-2">
+                            <label for="inputCity" class="form-label">Alquiler</label>
+                            {{form.alquiler}}
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputState" class="form-label">Rango de personas</label>
+                            {{form.rango}}
+                        </div>
+                        <div class="col-md-12">
+                            <label for="inputZip" class="form-label">Contrasena</label>
+                            {{form.description}}
+                        </div>
+                        <div class="col-12">
+                            <label for="inputZip" class="form-label">Tags</label>
+                            {{form.tags}}
+                        </div>
+                        <div class="col-12">
+                            <label for="inputZip" class="form-label">Espacios</label>
+                            {{form.espacios}}
+                        </div>
+                        <div class="col-12 mt-3">
+                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="container">
+ <div class="col-12 mt-3">
+     <form method="POST" action="{% url 'salones_app:delete-salon' object.id%}">{% csrf_token %}
+     <button type="submit" class="btn btn-danger">Eliminar</button>
     </form>
-    {% include 'includes/footer.html' %}
+ </div>
+</div>
+{% include 'includes/footer.html' %}
 {% endblock content %}

@@ -5,8 +5,56 @@ Salones de eventos
 {% block content %}
 {% include 'includes/header.html' %}
 <form method="POST">{% csrf_token %}
-{{form.as_p}}
-    <button>Acceder</button>
+    <div class="container p-5">
+        <div class="card">
+            <div class="card-body p-5">
+                <h5 class="card-title">Card title</h5>
+                <div class="card-body">
+                <div class="row "> {% csrf_token %}
+                        <div class="col-sm-4">
+                            <label for="inputEmail4" class="form-label">Nombre</label>
+                            {{form.nombre}}
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="inputPassword4" class="form-label">Ciudad</label>
+                            {{form.ciudad}}
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputAddress" class="form-label">Region o estado</label>
+                            {{form.region}}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputAddress2" class="form-label">Region o Estado</label>
+                            {{form.direccion}}
+                        </div>
+                        <div class="col-md-2">
+                            <label for="inputCity" class="form-label">Alquiler</label>
+                            {{form.alquiler}}
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputState" class="form-label">Rango de personas</label>
+                            {{form.rango}}
+                        </div>
+                        <div class="col-md-12">
+                            <label for="inputZip" class="form-label">Descripción</label>
+                            {{form.description}}
+                        </div>
+                        <div class="col-12">
+                            <label for="inputZip" class="form-label">Tags</label>
+                            {{form.tags}}
+                        </div>
+                        <div class="col-12">
+                            <label for="inputZip" class="form-label">Espacios</label>
+                            {{form.espacios}}
+                        </div>
+                        <div class="col-12 mt-3">
+                            <button type="submit" class="btn btn-primary">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
 {% include 'includes/footer.html' %}
 {% endblock content %}

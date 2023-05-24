@@ -4,9 +4,73 @@
 {% endblock title%}
 {% block content %}
 {% include 'includes/header.html' %}
-<form method="POST"> {% csrf_token %}
-{{ form.as_p}}
-    <button type="submit"> asdsa </button>
-</form>
+<section class=" text-center text-lg-start">
+    <style>
+        .rounded-t-5 {
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+        }
+
+        @media (min-width: 992px) {
+            .rounded-tr-lg-0 {
+                border-top-right-radius: 0;
+            }
+
+            .rounded-bl-lg-5 {
+                border-bottom-left-radius: 0.5rem;
+            }
+        }
+    </style>
+    <div class="card mb-3">
+        <div class="row g-0 d-flex align-items-center">
+            <div class="col-lg-4 d-none d-lg-flex">
+                <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" alt="Trendy Pants and Shoes"
+                     class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5"/>
+            </div>
+            <div class="col-lg-8">
+                <div class="card-body py-5 px-md-5">
+
+                    <form class="row g-3"> {% csrf_token %}
+                        <div class="col-md-6">
+                            <label for="inputEmail4" class="form-label">Nombre</label>
+                            {{form.first_name}}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputPassword4" class="form-label">Apellidos</label>
+                            {{form.last_name}}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputAddress" class="form-label">Email</label>
+                            {{form.email}}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputAddress2" class="form-label">Region o Estado</label>
+                            {{form.region}}
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputCity" class="form-label">City</label>
+                            {{form.city}}
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputState" class="form-label">Celular</label>
+                            {{form.phone}}
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputZip" class="form-label">Contrasena</label>
+                            {{form.password}}
+                        </div>
+                        <div class="col-12">
+                            {{form.captcha}}
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">Registrarse</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     {% include 'includes/footer.html' %}
 {% endblock content %}

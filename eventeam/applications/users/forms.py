@@ -5,7 +5,14 @@ from .models import User
 
 
 class UserRegisterForm(forms.ModelForm):
-    password1 = forms.CharField(
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['placeholder'] = visible.field.label
+
+    password = forms.CharField(
         label='Contrasena',
         required=True,
         widget=forms.PasswordInput(

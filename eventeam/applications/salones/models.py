@@ -43,6 +43,7 @@ class Salon(models.Model):
     tags = models.ManyToManyField(Tags)
     espacios = models.ManyToManyField(Espacio)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
     class Meta:
         verbose_name = 'Salon'
         verbose_name_plural = 'Salones'
@@ -61,3 +62,17 @@ class SalonImages(models.Model):
 
     def __str__(self):
         return 'imagen del salon %s' % self.salon.nombre
+
+
+class ReservaSalon(models.Model):
+    class Aprox(models.IntegerChoices):
+        DIEZ_CINCUENTA = (1, '0-100')
+        CINCUENTA_CIEN = (2, '100-200')
+        CIEN_QUINIENTOS = (3, '200 o más')
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservas')
+    salon = models.ForeignKey(Salon, on_delete=models.CASCADE, related_name='reservas')
+    inv_aprox = models.IntegerField(verbose_name='Invitados aproximados', choices=Aprox.choices)
+    fecha = models.DateField(verbose_name='fecha')
+    created_at = models.DateField(verbose_name='Creado el', auto_now_add=True)
+
